@@ -1,3 +1,25 @@
+.list-Cards{
+    border: 1px solid black;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.list-items{
+    display: flex;
+    overflow-x: scroll;
+}
+
+.card{
+   width: 300px;
+}
+
+
+
+
+
+
+
 /* 
     General Styles
 */
