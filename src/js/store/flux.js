@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			people: JSON.parse(localStorage.getItem("people"))||[],
 			vehicles:JSON.parse(localStorage.getItem("vehicles"))||[],
 			planets:JSON.parse(localStorage.getItem("planets"))||[], 
-			
+			favorites: JSON.parse(localStorage.getItem("favorites"))||[]
 		},
 		actions: {
 			getContent: async ()=>{ 
@@ -39,29 +39,58 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		},
 
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
+		addFavorites: (id)=>{
+			let store = getStore();
+			let exist = store.favorites.find((item)=>{
+				return(
+					item._id == id
+				)
+			})
+			if(!exist){
+				for(let endPoint of store.endPoints){
+					let favorite;
+					favorite = store[endPoint].find((item)=>{
+						return(
+							item._id == id
+						)
+					})
+					if(favorite){
+						setStore({
+							...store,
+							favorites: [...store.favorites, favorite]
+						})
+						localStorage.setItem("favorites", JSON.stringify(store.favorites))
+						return;
+					}
+				}
+			}else{
+				let newFavorite = store.favorites.filter((item)=>{
+					return(
+						item._id != id
+					)
+				})
+				setStore({
+					...store,
+					favorites: newFavorite
+				})
+				localStorage.setItem("favorites", JSON.stringify(store.favorites))
 			}
+		},
+		
+		deleteFavorites: (id)=>{
+			let store = getStore()
+			let deleteFavorite = store.favorites.filter((item)=>{
+					return(
+						item._id != id
+					)
+				})
+				setStore({
+					...store,
+					favorites: deleteFavorite
+				})
+				localStorage.setItem("favorites", JSON.stringify(store.favorites))
+			}
+
 		}
 	};
 };

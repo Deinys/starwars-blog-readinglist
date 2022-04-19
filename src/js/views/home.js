@@ -17,7 +17,7 @@ export const Home = () => {
 			))}
 		</div>
 	</div>
-	
+	 
 	<div className="container list-Cards">
 	<Header title={"Planets"}/>
 		<div className="list-items">
@@ -29,7 +29,7 @@ export const Home = () => {
 	</div>
 	
 	<div className="container list-Cards">
-	<Header title={"Vehicle"}/>
+	<Header title={"Vehicles"}/>
 		<div className="list-items">
 			{store.vehicles.map((vehicle)=>(
 				<Card key={vehicle.uid} item={vehicle} nature="vehicles"/>

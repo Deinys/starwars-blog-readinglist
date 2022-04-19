@@ -9,35 +9,22 @@ export const Demo = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
-			<br />
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
-		</div>
+		<>
+			<h1>Hola</h1>
+			<div className="container">
+				<div className="info d-flex">
+					<div className="img">
+						<img src="https://via.placeholder.com/500" />
+					</div>
+					<div className="text-center">
+						<div><h1>Name</h1></div>
+						<div className="description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sodales dolor et pharetra sollicitudin. Suspendisse id ultricies lorem. In ornare quam ut fermentum vulputate. Proin semper nunc lorem, id sodales tellus eleifend eget. Nulla quis massa viverra, bibendum ligula quis, congue dui. Proin blandit, orci non tristique fermentum, odio urna sodales lacus, sed euismod felis felis ac metus. Donec est velit, maximus dignissim tortor viverra, pharetra posuere nunc. Praesent dapibus mi id metus posuere ultricies.</p></div>
+					</div>
+
+				</div>
+
+				<div className="footer"><h1>soy la descripcion</h1></div>
+			</div>
+		</>
 	);
 };
